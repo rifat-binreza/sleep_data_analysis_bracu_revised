@@ -1,0 +1,6 @@
+{
+ "n_conflicting_rows": 128,
+ "n_consistent_rows": 246,
+ "n_minority_label_rows": 25,
+ "ceiling_on_conflicting": 0.8046875
+}

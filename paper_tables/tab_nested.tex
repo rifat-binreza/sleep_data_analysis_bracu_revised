@@ -1,0 +1,19 @@
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & Accuracy (\%) [95\% CI] & Macro-F1 & Brier & Log-loss\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Grouped CV (374 records)}}\\
+Logistic regression & 89.0 [85.3, 92.4] & 0.86 & 0.198 & 0.428\\
+Random forest & 89.2 [85.5, 92.5] & 0.86 & 0.181 & 0.385\\
+XGBoost & 90.1 [86.7, 93.2] & 0.87 & 0.175 & 0.378\\
+Soft voting (RF+XGB) & 89.9 [86.5, 93.0] & 0.87 & 0.175 & 0.374\\
+\textbf{Stacking (RF+XGB)} & 90.0 [86.6, 93.1] & 0.87 & 0.184 & 0.399\\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Unique rows only (132 records)}}\\
+Logistic regression & 75.0 [69.0, 81.0] & 0.70 & 0.415 & 0.755\\
+Random forest & 76.7 [70.6, 82.9] & 0.71 & 0.394 & 0.730\\
+XGBoost & 76.9 [70.7, 83.2] & 0.71 & 0.394 & 0.737\\
+Soft voting (RF+XGB) & 76.5 [70.4, 82.5] & 0.71 & 0.390 & 0.725\\
+\textbf{Stacking (RF+XGB)} & 77.2 [71.5, 83.2] & 0.72 & 0.406 & 0.741\\
+\bottomrule
+\end{tabular}

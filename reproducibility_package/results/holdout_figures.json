@@ -1,0 +1,262 @@
+{
+ "stack": {
+  "per_class": [
+   {
+    "c": "Insomnia",
+    "p": 1.0,
+    "r": 0.8666666666666667,
+    "f": 0.9285714285714286,
+    "n": 15
+   },
+   {
+    "c": "No recorded disorder",
+    "p": 1.0,
+    "r": 0.9772727272727273,
+    "f": 0.9885057471264368,
+    "n": 44
+   },
+   {
+    "c": "Sleep apnea",
+    "p": 0.8421052631578947,
+    "r": 1.0,
+    "f": 0.9142857142857143,
+    "n": 16
+   }
+  ],
+  "macro": [
+   0.9473684210526315,
+   0.9479797979797979,
+   0.9437876299945266
+  ],
+  "weighted": [
+   0.9663157894736842,
+   0.96,
+   0.9606852764094144
+  ],
+  "correct": 72,
+  "cm": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    43,
+    1
+   ],
+   [
+    0,
+    0,
+    16
+   ]
+  ]
+ },
+ "vote": {
+  "macro": [
+   0.9369747899159663,
+   0.9347222222222222,
+   0.9352142110762801
+  ],
+  "correct": 72,
+  "cm": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    44,
+    0
+   ],
+   [
+    1,
+    0,
+    15
+   ]
+  ]
+ },
+ "roc": {
+  "per_class": [
+   0.9866666666666666,
+   1.0,
+   0.9957627118644068
+  ],
+  "micro": 0.9952,
+  "macro": 0.9941431261770245,
+  "weighted": 0.9964293785310734
+ },
+ "roc_vote": {
+  "macro": 0.9963998744507219
+ },
+ "paired": {
+  "vote_correct_stack_correct": 71,
+  "vote_correct_stack_wrong": 1,
+  "vote_wrong_stack_correct": 1,
+  "both_wrong": 2,
+  "diff_pp": 0.0,
+  "ci": [
+   -4.0,
+   4.0
+  ],
+  "mcnemar_p": 1.0
+ },
+ "lime_fig": {
+  "stack": {
+   "w": [
+    [
+     "Daily Steps <= 6000.00",
+     0.13601552180765683
+    ],
+    [
+     "85.00 < Diastolic_BP <= 90.00",
+     0.09739751520544657
+    ],
+    [
+     "BMI Category=Overweight",
+     -0.08528834460159956
+    ],
+    [
+     "Stress Level <= 4.00",
+     0.07592180832665824
+    ],
+    [
+     "43.00 < Age <= 50.00",
+     0.07161071217084379
+    ],
+    [
+     "Occupation=Teacher",
+     0.071386278256962
+    ],
+    [
+     "130.00 < Systolic_BP <= 135.00",
+     0.05729180060722369
+    ],
+    [
+     "6.45 < Sleep Duration <= 7.20",
+     0.04687439389754401
+    ],
+    [
+     "Gender=Female",
+     -0.04165068768145933
+    ],
+    [
+     "Heart Rate <= 68.00",
+     0.019163667093550076
+    ]
+   ],
+   "r2": 0.13408132059396627,
+   "p": [
+    0.897370662904071,
+    0.0805860077968437,
+    0.022043329299085264
+   ]
+  },
+  "vote": {
+   "w": [
+    [
+     "Physical Activity Level <= 45.00",
+     0.12452737406673015
+    ],
+    [
+     "130.00 < Systolic_BP <= 135.00",
+     0.11752126454113547
+    ],
+    [
+     "BMI Category=Overweight",
+     0.0816992648960121
+    ],
+    [
+     "85.00 < Diastolic_BP <= 90.00",
+     0.04657031570203501
+    ],
+    [
+     "Daily Steps <= 6000.00",
+     0.040137592046679924
+    ],
+    [
+     "43.00 < Age <= 50.00",
+     0.02681542443276957
+    ],
+    [
+     "6.45 < Sleep Duration <= 7.20",
+     0.02371939883989468
+    ],
+    [
+     "Heart Rate <= 68.00",
+     -0.007277580709703136
+    ],
+    [
+     "Stress Level <= 4.00",
+     -0.004763947837267662
+    ],
+    [
+     "Gender=Female",
+     0.0033720730587607616
+    ]
+   ],
+   "r2": 0.3236124387165277,
+   "p": [
+    0.968897193362636,
+    0.027604367891626975,
+    0.0034984431695193052
+   ]
+  }
+ },
+ "vote_shap_order": {
+  "Systolic_BP": 0.1151,
+  "BMI Category": 0.0672,
+  "Physical Activity Level": 0.0405,
+  "Diastolic_BP": 0.0404,
+  "Sleep Duration": 0.0359,
+  "Age": 0.0351,
+  "Occupation": 0.0269,
+  "Heart Rate": 0.0202,
+  "Daily Steps": 0.0174,
+  "Stress Level": 0.0091,
+  "Quality of Sleep": 0.0087,
+  "Gender": 0.0086
+ },
+ "beeswarm_top": [
+  "Sleep Duration",
+  "Diastolic_BP",
+  "Age",
+  "Quality of Sleep",
+  "Daily Steps",
+  "Occupation_Nurse",
+  "Systolic_BP",
+  "Occupation_Salesperson"
+ ],
+ "radar": {
+  "shap": {
+   "Gender": 0.121,
+   "Age": 0.485,
+   "Occupation": 0.891,
+   "Sleep Duration": 0.717,
+   "Quality of Sleep": 0.348,
+   "Physical Activity Level": 0.259,
+   "Stress Level": 0.192,
+   "BMI Category": 0.243,
+   "Heart Rate": 0.697,
+   "Daily Steps": 0.421,
+   "Systolic_BP": 0.256,
+   "Diastolic_BP": 1.0
+  },
+  "lime": {
+   "Gender": 0.055,
+   "Age": 0.258,
+   "Occupation": 1.0,
+   "Sleep Duration": 0.192,
+   "Quality of Sleep": 0.167,
+   "Physical Activity Level": 0.169,
+   "Stress Level": 0.09,
+   "BMI Category": 0.159,
+   "Heart Rate": 0.392,
+   "Daily Steps": 0.132,
+   "Systolic_BP": 0.094,
+   "Diastolic_BP": 0.563
+  },
+  "spearman": 0.9090909090909092
+ }
+}

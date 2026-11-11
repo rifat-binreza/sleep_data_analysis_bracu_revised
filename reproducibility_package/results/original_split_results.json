@@ -1,0 +1,175 @@
+{
+ "RF": {
+  "test_acc": 0.96,
+  "correct": 72,
+  "n": 75,
+  "clopper_pearson_95": [
+   0.8875231782399902,
+   0.9916738343339206
+  ],
+  "macro_f1": 0.9352142110762801,
+  "train_acc": 0.919732441471572,
+  "acc_on_novel_test_rows": 0.8571428571428571,
+  "n_novel": 7,
+  "confusion": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    44,
+    0
+   ],
+   [
+    1,
+    0,
+    15
+   ]
+  ]
+ },
+ "XGB": {
+  "test_acc": 0.9333333333333333,
+  "correct": 70,
+  "n": 75,
+  "clopper_pearson_95": [
+   0.8512395208422177,
+   0.9780007475302044
+  ],
+  "macro_f1": 0.89247311827957,
+  "train_acc": 0.9163879598662207,
+  "acc_on_novel_test_rows": 0.5714285714285714,
+  "n_novel": 7,
+  "confusion": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    44,
+    0
+   ],
+   [
+    3,
+    0,
+    13
+   ]
+  ]
+ },
+ "SoftVote(RF+XGB)": {
+  "test_acc": 0.96,
+  "correct": 72,
+  "n": 75,
+  "clopper_pearson_95": [
+   0.8875231782399902,
+   0.9916738343339206
+  ],
+  "macro_f1": 0.9352142110762801,
+  "train_acc": 0.9163879598662207,
+  "acc_on_novel_test_rows": 0.8571428571428571,
+  "n_novel": 7,
+  "confusion": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    44,
+    0
+   ],
+   [
+    1,
+    0,
+    15
+   ]
+  ]
+ },
+ "Stack(RF+XGB)": {
+  "test_acc": 0.96,
+  "correct": 72,
+  "n": 75,
+  "clopper_pearson_95": [
+   0.8875231782399902,
+   0.9916738343339206
+  ],
+  "macro_f1": 0.9437876299945266,
+  "train_acc": 0.9163879598662207,
+  "acc_on_novel_test_rows": 0.7142857142857143,
+  "n_novel": 7,
+  "confusion": [
+   [
+    13,
+    0,
+    2
+   ],
+   [
+    0,
+    43,
+    1
+   ],
+   [
+    0,
+    0,
+    16
+   ]
+  ]
+ },
+ "LogReg": {
+  "test_acc": 0.9466666666666667,
+  "correct": 71,
+  "n": 75,
+  "clopper_pearson_95": [
+   0.8690391927215253,
+   0.9852792353408218
+  ],
+  "macro_f1": 0.9199781061850026,
+  "train_acc": 0.9096989966555183,
+  "acc_on_novel_test_rows": 0.8571428571428571,
+  "n_novel": 7,
+  "confusion": [
+   [
+    12,
+    0,
+    3
+   ],
+   [
+    1,
+    43,
+    0
+   ],
+   [
+    0,
+    0,
+    16
+   ]
+  ]
+ },
+ "stack_plain_stratified_inner_folds": {
+  "correct": 72,
+  "n": 75
+ },
+ "paired_stack_vs_softvote": {
+  "stack_only_correct": 1,
+  "vote_only_correct": 1,
+  "mcnemar_exact_p": 1.0,
+  "boot_diff_pp": 0.0,
+  "boot_ci_pp": [
+   -4.0,
+   4.0
+  ]
+ },
+ "power_note": {
+  "n": 75,
+  "discordant_rate_observed": 0.02666666666666667,
+  "mde_pp_80power": 5.282719748799128
+ },
+ "leakage": {
+  "test_rows": 75,
+  "test_rows_with_identical_train_vector": 68
+ }
+}

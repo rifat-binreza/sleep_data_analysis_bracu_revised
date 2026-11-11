@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, code, or methodology in your research, please cite it as below."
+title: "Explainable Stacking for Multiclass Sleep-Disorder Classification: A Leakage-Controlled Evaluation"
+authors:
+  - family-names: "Reza"
+    given-names: "Rifat Bin"
+    orcid: "https://orcid.org/0009-0006-1865-8419"
+    email: "rifat.bin.reza1@g.bracu.ac.bd"
+    affiliation: "Department of Electrical and Electronic Engineering, Brac University, Dhaka, Bangladesh"
+  - family-names: "Suvo"
+    given-names: "Md Ahadul Haque"
+    orcid: "https://orcid.org/0009-0000-6756-4773"
+    affiliation: "Department of Avionics Engineering, Aviation and Aerospace University, Dhaka, Bangladesh"
+  - family-names: "Alvi"
+    given-names: "Atair Rahman"
+    orcid: "https://orcid.org/0009-0006-5117-8599"
+    affiliation: "Department of Electrical and Electronic Engineering, Brac University, Dhaka, Bangladesh"
+version: "1.0.0"
+date-released: 2026-11-08
+keywords:
+  - "sleep disorder"
+  - "insomnia"
+  - "sleep apnea"
+  - "stacking ensemble"
+  - "XGBoost"
+  - "Random Forest"
+  - "explainable machine learning"
+  - "leakage audit"
+  - "reproducibility"
+repository-code: "https://github.com/rifat-binreza/sleep_data_analysis_bracu_revised"
+license: "MIT"
+

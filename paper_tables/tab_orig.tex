@@ -1,0 +1,11 @@
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Model & Correct/75 & Accuracy (\%) [exact 95\% CI] & Macro-F1 & Train acc.\ (\%) & Unseen-vector rows correct\\
+\midrule
+Logistic regression & 71 & 94.7 [86.9, 98.5] & 0.92 & 91.0 & 6/7\\
+Random forest & 72 & 96.0 [88.8, 99.2] & 0.94 & 92.0 & 6/7\\
+XGBoost & 70 & 93.3 [85.1, 97.8] & 0.89 & 91.6 & 4/7\\
+Soft voting (RF+XGB) & 72 & 96.0 [88.8, 99.2] & 0.94 & 91.6 & 6/7\\
+\textbf{Stacking (RF+XGB)} & 72 & 96.0 [88.8, 99.2] & 0.94 & 91.6 & 5/7\\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,13 @@
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Configuration & Accuracy (\%) & Macro-F1 & Macro AUC & Log-loss\\
+\midrule
+Full stack (RF + XGBoost + pass-through) & 89.6 & 0.87 & 0.91 & 0.446\\
+Stack without Random Forest & 89.8 & 0.87 & 0.91 & 0.443\\
+Stack without XGBoost & 89.6 & 0.87 & 0.91 & 0.445\\
+Stack without pass-through & 89.9 & 0.87 & 0.92 & 0.389\\
+Soft voting (RF + XGBoost) & 89.8 & 0.87 & 0.92 & 0.447\\
+Random Forest alone & 89.8 & 0.87 & 0.92 & 1.119\\
+XGBoost alone & 89.8 & 0.87 & 0.92 & 0.431\\
+\bottomrule
+\end{tabular}

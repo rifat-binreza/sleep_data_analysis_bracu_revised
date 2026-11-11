@@ -1,0 +1,21 @@
+,,acc,acc,macro_f1,macro_f1
+,,mean,std,mean,std
+set,model,,,,
+All predictors,LogReg,0.897,0.003,0.872,0.006
+All predictors,Majority,0.586,0.0,0.246,0.0
+All predictors,RF,0.898,0.006,0.866,0.008
+All predictors,SoftVote(RF+XGB),0.898,0.006,0.866,0.009
+All predictors,Stack(RF+XGB),0.896,0.005,0.868,0.007
+All predictors,XGB,0.898,0.008,0.866,0.012
+"Without all sleep/stress (dur., qual., stress)",LogReg,0.889,0.007,0.86,0.01
+"Without all sleep/stress (dur., qual., stress)",Majority,0.586,0.0,0.246,0.0
+"Without all sleep/stress (dur., qual., stress)",RF,0.894,0.005,0.862,0.006
+"Without all sleep/stress (dur., qual., stress)",SoftVote(RF+XGB),0.899,0.006,0.868,0.009
+"Without all sleep/stress (dur., qual., stress)",Stack(RF+XGB),0.892,0.004,0.861,0.005
+"Without all sleep/stress (dur., qual., stress)",XGB,0.899,0.005,0.867,0.008
+Without sleep duration & quality,LogReg,0.891,0.003,0.864,0.005
+Without sleep duration & quality,Majority,0.586,0.0,0.246,0.0
+Without sleep duration & quality,RF,0.896,0.006,0.864,0.008
+Without sleep duration & quality,SoftVote(RF+XGB),0.899,0.005,0.868,0.007
+Without sleep duration & quality,Stack(RF+XGB),0.899,0.004,0.872,0.006
+Without sleep duration & quality,XGB,0.899,0.005,0.867,0.009

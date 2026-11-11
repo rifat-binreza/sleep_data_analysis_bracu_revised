@@ -1,0 +1,22 @@
+{
+ "n_rows": 374,
+ "class_counts": {
+  "Insomnia": 77,
+  "None": 219,
+  "Sleep Apnea": 78
+ },
+ "exact_duplicate_rows_excluding_id": 242,
+ "unique_rows": 132,
+ "unique_by_class": {
+  "Insomnia": 29,
+  "None": 73,
+  "Sleep Apnea": 30
+ },
+ "unique_predictor_vectors": 109,
+ "predictor_vectors_with_conflicting_labels": 22,
+ "rows_in_conflicting_vectors": 128,
+ "bayes_ceiling_accuracy_on_374": 0.9331550802139037,
+ "orig_split_test_rows": 75,
+ "orig_split_test_rows_with_identical_train_vector": 68,
+ "orig_split_test_rows_with_identical_vector_and_same_label": 65
+}

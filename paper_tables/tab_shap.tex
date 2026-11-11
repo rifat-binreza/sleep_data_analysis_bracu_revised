@@ -1,0 +1,14 @@
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Quantity & Stacking & Soft voting\\
+\midrule
+Mean pairwise rank correlation across 10 runs (min) & 0.98 (0.94) & 0.97 (0.94)\\
+Mean pairwise Jaccard overlap of top-3 sets & 0.73 & 0.72\\
+Top-3 predictors (mean $|\phi|$) & Diastolic BP, Occupation, Sleep Duration & Systolic BP, BMI Category, Physical Activity Level\\
+Blood-pressure block, mean $|\phi|$ (SBP+DBP) & 0.148 & 0.156\\
+Sleep/stress block (duration+quality+stress) & 0.148 & 0.054\\
+Activity block (activity+steps) & 0.080 & 0.058\\
+Held-out $\Delta$log-loss, SBP / DBP alone & 0.125 / 0.298 & 0.136 / 0.015\\
+Held-out $\Delta$log-loss, BP block permuted jointly & 0.647 & 0.318\\
+\bottomrule
+\end{tabular}

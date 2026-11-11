@@ -1,0 +1,9 @@
+{
+ "tabpfn_version": "9.2.0",
+ "device": "cuda",
+ "csv": "Sleep_health_and_lifestyle_dataset.csv",
+ "accuracy_grouped": 0.8969933617828354,
+ "weights": "v2 (create_default_for_version)",
+ "accuracy_dedup": 0.7366951566951566,
+ "seconds": 41.9
+}

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sleep-Disorder Stacking Benchmark: results explorer</title>
+<meta name="description" content="Interactive results for a leakage-controlled evaluation of explainable stacking on the Sleep Health and Lifestyle Dataset.">
+<style>
+:root{
+  --bg:#fcfcfb; --panel:#ffffff; --ink:#1c1c1c; --ink2:#4a4a4a; --mute:#767676; --rule:#e4e4e0; --soft:#f3f3f0;
+  --c0:#0072B2; --c1:#E69F00; --c2:#009E73; --accent:#C8501E; --other:#5f7d95; --pos:#1B6A9E; --neg:#B35806; --band:#eaf2f9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131414; --panel:#1b1c1d; --ink:#ececea; --ink2:#c9c9c5; --mute:#9a9a96; --rule:#303233; --soft:#222425;
+    --c0:#4FA8DE; --c1:#F0B429; --c2:#2FBF95; --accent:#F0834F; --other:#8fb0c9; --pos:#5FB0E0; --neg:#E79A45; --band:#1e2a34;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131414; --panel:#1b1c1d; --ink:#ececea; --ink2:#c9c9c5; --mute:#9a9a96; --rule:#303233; --soft:#222425;
+  --c0:#4FA8DE; --c1:#F0B429; --c2:#2FBF95; --accent:#F0834F; --other:#8fb0c9; --pos:#5FB0E0; --neg:#E79A45; --band:#1e2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+main{max-width:1020px;margin:0 auto;padding:0 16px 72px}
+header{padding:44px 0 8px}
+.eyebrow{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+h1{font-size:clamp(26px,4.4vw,40px);line-height:1.14;margin:0 0 14px;letter-spacing:-.015em;text-wrap:balance}
+.lede{font-size:17.5px;color:var(--ink2);max-width:64ch;margin:0 0 18px}
+.byline{font-size:14px;color:var(--mute);margin:0 0 18px}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.links a{font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--rule);background:var(--panel);padding:7px 13px;border-radius:999px}
+.links a:hover{border-color:var(--mute)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:26px 0 8px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:14px 16px}
+.tile b{display:block;font-size:30px;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile span{font-size:13.5px;color:var(--ink2)}
+section{margin-top:54px}
+h2{font-size:23px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--ink2);margin:0 0 16px;max-width:70ch}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:16px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:9px;overflow:hidden;background:var(--soft)}
+.seg button{font:inherit;font-size:13.5px;border:0;background:none;color:var(--ink2);padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--pos);outline-offset:-2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2);margin-top:10px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.legend .ln{width:18px;height:0;border-top:2px dashed var(--ink2);border-radius:0;vertical-align:3px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{fill:var(--ink);font-family:inherit}
+.t-mute{fill:var(--mute)!important}
+.note{font-size:13.5px;color:var(--mute);margin:10px 0 0}
+details{margin-top:12px}
+summary{cursor:pointer;font-size:14px;color:var(--ink2)}
+.tw{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 10px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--mute);font-weight:600}
+tr.stack td{font-weight:700}
+#tip{position:fixed;pointer-events:none;z-index:10;max-width:280px;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.4;padding:8px 10px;border-radius:8px;opacity:0;transition:opacity .08s}
+#tip b{font-weight:650}
+footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2)}
+footer p{max-width:75ch}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;background:var(--soft);padding:1px 5px;border-radius:4px}
+pre{background:var(--soft);padding:12px 14px;border-radius:10px;overflow-x:auto;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <p class="eyebrow">Results explorer</p>
+  <h1>Explainable stacking for sleep-disorder classification, evaluated without leakage</h1>
+  <p class="lede">A stacking ensemble and fourteen comparators on one set of grouped folds, with an audit of the benchmark they are scored on. Every number on this page is read from the released result files.</p>
+  <p class="byline">Rifat Bin Reza · Md Ahadul Haque Suvo · Atair Rahman Alvi</p>
+  <div class="links">
+    <a href="https://github.com/rifat-binreza/sleep_data_analysis_bracu_revised">Code and results on GitHub</a>
+    <a href="https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset">Dataset on Kaggle</a>
+  </div>
+  <div class="tiles" id="tiles"></div>
+</header>
+
+<section>
+  <h2>The benchmark, record by record</h2>
+  <p class="sub">Each square is one of the 374 records. Solid squares are first occurrences; pale squares repeat an earlier record exactly. A dot marks a record whose predictor values also appear with a different label.</p>
+  <div class="card">
+    <div class="controls"><div class="seg" id="auditSeg" role="group" aria-label="Highlight records"></div></div>
+    <div id="audit"></div>
+    <div class="legend" id="auditLegend"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Every model on the same folds</h2>
+  <p class="sub">Accuracy with its 95% cluster-bootstrap interval. Grouped cross-validation keeps records with identical predictor values in the same fold, so no model is tested on a record it has already seen.</p>
+  <div class="card">
+    <div class="controls"><div class="seg" id="protoSeg" role="group" aria-label="Evaluation protocol"></div><div class="seg" id="sortSeg" role="group" aria-label="Order"></div></div>
+    <div id="models"></div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Stacking (RF+XGB)</span><span><i style="background:var(--other)"></i>Comparators</span><span id="ceilLegend"><i class="ln"></i>93.3% accuracy ceiling on the full file</span></div>
+    <details><summary>Show all metrics as a table</summary><div class="tw"><table id="modelTable"></table></div></details>
+  </div>
+</section>
+
+<section>
+  <h2>Stack minus comparator</h2>
+  <p class="sub">Paired differences in accuracy and in recall for each class, in percentage points. A cell is coloured only when its 95% interval excludes zero; hover or tap a cell for the interval. The intervals are not adjusted for the 104 comparisons, so single cells should not be over-read.</p>
+  <div class="card">
+    <div class="controls"><div class="seg" id="diffSeg" role="group" aria-label="Evaluation protocol"></div></div>
+    <div id="heat"></div>
+    <div class="legend"><span><i style="background:var(--pos)"></i>stack higher</span><span><i style="background:var(--neg)"></i>stack lower</span><span><i style="background:var(--panel);border:1px solid var(--rule)"></i>interval includes zero</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Where the errors fall</h2>
+  <p class="sub">Grouped-CV accuracy on the 246 records whose predictor values carry a single label, and on the 128 records whose predictor values carry conflicting labels. On the second group no classifier can exceed 80.5%.</p>
+  <div class="card">
+    <div id="conflict"></div>
+    <div class="legend"><span><i style="background:var(--c0);border-radius:50%"></i>consistent-label records</span><span><i style="background:var(--c1);border-radius:50%"></i>conflicting-label records</span><span><i class="ln"></i>80.5% ceiling on conflicting records</span></div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Read this first.</strong> The dataset is a public benchmark with questionnaire-style fields and no clinical adjudication. The results describe how models behave on that benchmark. They are not estimates of diagnostic or screening performance.</p>
+  <p>To rebuild this page's data from the result files: <code>python docs/build_data.py</code>.</p>
+</footer>
+</main>
+<div id="tip" role="status"></div>
+<script src="data.js"></script>
+<script>
+(function(){
+const D = window.DATA, NS = "http://www.w3.org/2000/svg";
+const $ = id => document.getElementById(id);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const el = (tag, attrs, parent, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; };
+const f1 = v => (v == null ? "–" : v.toFixed(1)), f3 = v => (v == null ? "–" : v.toFixed(3)), sg = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const tip = $("tip");
+function showTip(ev, html){ tip.innerHTML = html; tip.style.opacity = 1; const r = tip.getBoundingClientRect(); let x = ev.clientX + 14, y = ev.clientY + 14; if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - 14; if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - 14; tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px"; }
+function hideTip(){ tip.style.opacity = 0; }
+function hover(node, html){ node.addEventListener("pointermove", ev => showTip(ev, typeof html === "function" ? html() : html)); node.addEventListener("pointerleave", hideTip); }
+function seg(id, opts, get, set){ const box = $(id); box.innerHTML = ""; opts.forEach(([v, label]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.setAttribute("aria-pressed", String(get() === v)); b.onclick = () => { set(v); [...box.children].forEach(c => c.setAttribute("aria-pressed", "false")); b.setAttribute("aria-pressed", "true"); }; box.appendChild(b); }); }
+function svgIn(id, w, h){ const box = $(id); box.innerHTML = ""; return el("svg", {viewBox: `0 0 ${w} ${h}`, width: w, height: h, role: "img"}, box); }
+const width = id => Math.max(300, Math.floor($(id).getBoundingClientRect().width));
+const A = D.audit, stackG = D.models.find(m => m.protocol === "grouped" && m.id === "Stack(RF+XGB)");
+
+// ---------- tiles
+$("tiles").innerHTML = [[A.n_rows, "records in the file"], [A.unique_rows, "unique rows"], [A.unique_predictor_vectors, "distinct predictor vectors"],
+  [(100 * A.bayes_ceiling_accuracy_on_374).toFixed(1) + "%", "highest accuracy any model can reach on the file"], [stackG.acc.toFixed(1) + "%", "stack accuracy, grouped cross-validation"]]
+  .map(([b, s]) => `<div class="tile"><b>${b}</b><span>${s}</span></div>`).join("");
+
+// ---------- audit grid
+let auditMode = "all";
+const recs = D.records.slice().sort((a, b) => (a[2] - b[2]) || (a[1] - b[1]) || (b[3] - a[3]) || (a[0] - b[0]));
+function drawAudit(){
+  const W = width("audit"), tall = W < 560, rows = tall ? 22 : 11, cols = Math.ceil(recs.length / rows), p = W / cols, g = Math.max(1, p * .12), s = svgIn("audit", W, rows * p);
+  s.setAttribute("aria-label", "Grid of 374 records coloured by outcome label");
+  recs.forEach((r, i) => {
+    const x = Math.floor(i / rows) * p, y = (i % rows) * p, on = auditMode === "all" || (auditMode === "unique" && !r[2]) || (auditMode === "dup" && r[2]) || (auditMode === "conf" && r[3]);
+    const gEl = el("g", {opacity: on ? 1 : .13}, s);
+    el("rect", {x: x, y: y, width: p - g, height: p - g, rx: Math.min(2, p * .12), fill: css("--c" + r[1]), "fill-opacity": r[2] ? .34 : 1}, gEl);
+    if (r[3]) el("circle", {cx: x + (p - g) / 2, cy: y + (p - g) / 2, r: Math.max(1.1, p * .13), fill: css("--ink")}, gEl);
+    const hit = el("rect", {x: x, y: y, width: p, height: p, fill: "transparent"}, s);
+    hover(hit, `<b>Record ${r[0] + 1}</b> · ${D.classes[r[1]]}<br>${r[2] ? "Exact duplicate of an earlier record" : "First occurrence"}${r[3] ? "<br>Predictor values also appear with another label" : ""}<br>Stack correct in ${Math.round(r[4] * 10)} of 10 repeats`);
+  });
+}
+seg("auditSeg", [["all", "All 374"], ["unique", `Unique rows (${A.unique_rows})`], ["dup", `Duplicates (${A.exact_duplicate_rows_excluding_id})`], ["conf", `Conflicting labels (${A.rows_in_conflicting_vectors})`]], () => auditMode, v => { auditMode = v; drawAudit(); });
+$("auditLegend").innerHTML = D.classes.map((c, i) => `<span><i style="background:var(--c${i})"></i>${c}</span>`).join("") + `<span><i style="background:var(--mute);opacity:.34"></i>pale = duplicate</span><span><i style="background:var(--ink);border-radius:50%;width:7px;height:7px"></i>conflicting label</span>`;
+
+// ---------- model chart
+let proto = "grouped", sortBy = "family";
+const PROTO = [["grouped", "Grouped CV (374)"], ["dedup", "Unique rows (132)"], ["naive", "Plain stratified CV"]];
+function modelRows(){ let m = D.models.filter(x => x.protocol === proto); m.sort((a, b) => D.order.indexOf(a.id) - D.order.indexOf(b.id)); if (sortBy === "acc") m = m.slice().sort((a, b) => b.acc - a.acc); return m; }
+function drawModels(){
+  const W = width("models"), rows = modelRows(), small = W < 560, L = small ? 112 : 190, Rm = small ? 40 : 46, step = small ? 20 : 10, rh = 26, T = 8, H = T + rows.length * rh + 34, s = svgIn("models", W, H);
+  const lo = Math.floor(Math.min(...rows.map(r => r.lo)) / 10) * 10, hi = 100, X = v => L + (v - lo) / (hi - lo) * (W - L - Rm);
+  s.setAttribute("aria-label", "Accuracy of every model with 95% intervals");
+  for (let t = hi; t >= lo; t -= step){ el("line", {x1: X(t), x2: X(t), y1: T, y2: H - 30, stroke: css("--rule")}, s); el("text", {x: X(t), y: H - 14, "text-anchor": "middle", "font-size": 12, class: "t-mute"}, s, t); }
+  el("text", {x: (L + W - Rm) / 2, y: H - 0, "text-anchor": "middle", "font-size": 12, class: "t-mute"}, s, "Accuracy (%)");
+  const ceil = 100 * A.bayes_ceiling_accuracy_on_374; $("ceilLegend").style.display = proto === "dedup" ? "none" : "";
+  if (proto !== "dedup") el("line", {x1: X(ceil), x2: X(ceil), y1: T, y2: H - 30, stroke: css("--ink2"), "stroke-dasharray": "4 3", "stroke-width": 1.2}, s);
+  rows.forEach((r, i) => {
+    const y = T + i * rh + rh / 2, st = r.id.startsWith("Stack"), col = css(st ? "--accent" : "--other");
+    if (st) el("rect", {x: 0, y: y - rh / 2, width: W, height: rh, fill: css("--band"), rx: 5}, s);
+    el("text", {x: L - 10, y: y + 4, "text-anchor": "end", "font-size": small ? 12 : 13, "font-weight": st ? 700 : 400}, s, small ? r.name.replace(" (RF+XGB)", "").replace("HistGradientBoosting", "HistGB").replace("Decision tree (depth 3)", "Tree (depth 3)") : r.name);
+    el("line", {x1: X(r.lo), x2: X(r.hi), y1: y, y2: y, stroke: col, "stroke-width": 2, "stroke-linecap": "round"}, s);
+    el("circle", {cx: X(r.acc), cy: y, r: 5, fill: col, stroke: css("--panel"), "stroke-width": 2}, s);
+    el("text", {x: W - 4, y: y + 4, "text-anchor": "end", "font-size": 12.5, "font-weight": st ? 700 : 400}, s, f1(r.acc));
+    hover(el("rect", {x: 0, y: y - rh / 2, width: W, height: rh, fill: "transparent"}, s), `<b>${r.name}</b><br>Accuracy ${f1(r.acc)}% (95% CI ${f1(r.lo)}–${f1(r.hi)})<br>Macro-F1 ${f3(r.f1)} · AUC ${f3(r.auc)}<br>Brier ${f3(r.brier)} · log-loss ${f3(r.logloss)}${r.ece != null ? " · ECE " + f3(r.ece) : ""}`);
+  });
+  $("modelTable").innerHTML = "<tr><th>Model</th><th>Accuracy (%)</th><th>95% CI</th><th>Macro-F1</th><th>AUC</th><th>Brier</th><th>Log-loss</th><th>ECE</th></tr>" +
+    rows.map(r => `<tr class="${r.id.startsWith("Stack") ? "stack" : ""}"><td>${r.name}</td><td>${f1(r.acc)}</td><td>${f1(r.lo)}–${f1(r.hi)}</td><td>${f3(r.f1)}</td><td>${f3(r.auc)}</td><td>${f3(r.brier)}</td><td>${f3(r.logloss)}</td><td>${f3(r.ece)}</td></tr>`).join("");
+}
+seg("protoSeg", PROTO, () => proto, v => { proto = v; drawModels(); });
+seg("sortSeg", [["family", "Grouped by family"], ["acc", "Sorted by accuracy"]], () => sortBy, v => { sortBy = v; drawModels(); });
+
+// ---------- heatmap
+let dproto = "grouped";
+const METS = ["Accuracy", "Insomnia recall", "No-disorder recall", "Sleep-apnea recall"], MLAB = ["Accuracy", "Insomnia recall", "No-disorder recall", "Sleep apnea recall"], MSHORT = [["Accuracy"], ["Insomnia", "recall"], ["No disorder", "recall"], ["Apnea", "recall"]];
+function mix(hex, t){ const bg = css("--panel"), p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)), a = p(hex), b = p(bg.length === 4 ? "#" + [...bg.slice(1)].map(c => c + c).join("") : bg); return "rgb(" + a.map((v, i) => Math.round(b[i] + (v - b[i]) * t)).join(",") + ")"; }
+function drawHeat(){
+  const W = width("heat"), small = W < 560, L = small ? 96 : 180, rows = D.diffs.filter(d => d.protocol === dproto), ids = D.order.filter(id => rows.some(r => r.id === id));
+  const fams = []; ids.forEach(id => { const f = rows.find(r => r.id === id).family; if (!fams.includes(f)) fams.push(f); });
+  const cw = (W - L) / 4, rh = small ? 30 : 38, sh = 24, T = 34, H = T + ids.length * rh + fams.length * sh + 4, s = svgIn("heat", W, H);
+  s.setAttribute("aria-label", "Paired differences between the stack and each comparator");
+  MLAB.forEach((m, j) => { const parts = small ? MSHORT[j] : [m]; parts.forEach((pt, k) => el("text", {x: L + j * cw + cw / 2, y: T - 8 - (parts.length - 1 - k) * 13, "text-anchor": "middle", "font-size": small ? 11 : 12, "font-weight": 600}, s, pt)); });
+  let y = T;
+  fams.forEach(f => {
+    el("rect", {x: 0, y: y, width: W, height: sh - 3, fill: css("--soft"), rx: 4}, s); el("text", {x: 8, y: y + 15, "font-size": 12, class: "t-mute"}, s, f); y += sh;
+    ids.filter(id => rows.find(r => r.id === id).family === f).forEach(id => {
+      const nm = rows.find(r => r.id === id).name;
+      el("text", {x: L - 10, y: y + rh / 2 + 4, "text-anchor": "end", "font-size": small ? 12 : 13}, s, small ? nm.replace(" (RF+XGB)", "").replace("HistGradientBoosting", "HistGB").replace("Decision tree (depth 3)", "Tree (depth 3)").replace("Logistic regression", "Logistic reg.") : nm);
+      METS.forEach((m, j) => {
+        const d = rows.find(r => r.id === id && r.metric === m), t = Math.min(1, Math.abs(d.diff) / 10), strong = d.excl0 && t > .55;
+        el("rect", {x: L + j * cw + 1.5, y: y + 1.5, width: cw - 3, height: rh - 3, rx: 5, fill: d.excl0 ? mix(css(d.diff > 0 ? "--pos" : "--neg"), .22 + .78 * t) : css("--panel"), stroke: css("--rule")}, s);
+        el("text", {x: L + j * cw + cw / 2, y: y + (small ? 20 : 17), "text-anchor": "middle", "font-size": 13.5, "font-weight": d.excl0 ? 700 : 400, style: `fill:${strong ? css("--bg") : d.excl0 ? css("--ink") : css("--mute")}`}, s, sg(d.diff));
+        if (!small) el("text", {x: L + j * cw + cw / 2, y: y + 31, "text-anchor": "middle", "font-size": 10.5, style: `fill:${strong ? css("--bg") : d.excl0 ? css("--ink") : css("--mute")}`}, s, `${sg(d.lo)} to ${sg(d.hi)}`);
+        hover(el("rect", {x: L + j * cw, y: y, width: cw, height: rh, fill: "transparent"}, s), `<b>Stack vs ${nm}</b><br>${MLAB[j]}: ${sg(d.diff)} pp<br>95% CI ${sg(d.lo)} to ${sg(d.hi)}<br>${d.excl0 ? "Interval excludes zero" : "Interval includes zero"}`);
+      });
+      y += rh;
+    });
+  });
+}
+seg("diffSeg", PROTO.slice(0, 2), () => dproto, v => { dproto = v; drawHeat(); });
+
+// ---------- conflict dumbbells
+function drawConflict(){
+  const W = width("conflict"), small = W < 560, L = small ? 112 : 190, Rm = 16, rh = 26, T = 8, rows = D.order.map(id => D.conflict.find(c => c.id === id)).filter(Boolean), H = T + rows.length * rh + 34, s = svgIn("conflict", W, H);
+  const lo = 60, hi = 100, X = v => L + (Math.max(lo, v) - lo) / (hi - lo) * (W - L - Rm), ceil = 100 * D.meta.ceiling_on_conflicting;
+  s.setAttribute("aria-label", "Accuracy on consistent-label and conflicting-label records for every model");
+  for (let t = lo; t <= hi; t += 10){ el("line", {x1: X(t), x2: X(t), y1: T, y2: H - 30, stroke: css("--rule")}, s); el("text", {x: X(t), y: H - 14, "text-anchor": "middle", "font-size": 12, class: "t-mute"}, s, t); }
+  el("text", {x: (L + W - Rm) / 2, y: H, "text-anchor": "middle", "font-size": 12, class: "t-mute"}, s, "Grouped-CV accuracy (%)");
+  el("line", {x1: X(ceil), x2: X(ceil), y1: T, y2: H - 30, stroke: css("--ink2"), "stroke-dasharray": "4 3", "stroke-width": 1.2}, s);
+  rows.forEach((r, i) => {
+    const y = T + i * rh + rh / 2, st = r.id.startsWith("Stack");
+    if (st) el("rect", {x: 0, y: y - rh / 2, width: W, height: rh, fill: css("--band"), rx: 5}, s);
+    el("text", {x: L - 10, y: y + 4, "text-anchor": "end", "font-size": small ? 12 : 13, "font-weight": st ? 700 : 400}, s, small ? r.name.replace(" (RF+XGB)", "").replace("HistGradientBoosting", "HistGB").replace("Decision tree (depth 3)", "Tree (depth 3)") : r.name);
+    el("line", {x1: X(r.conf), x2: X(r.cons), y1: y, y2: y, stroke: css("--rule"), "stroke-width": 2}, s);
+    el("circle", {cx: X(r.conf), cy: y, r: 5, fill: css("--c1"), stroke: css("--panel"), "stroke-width": 2}, s);
+    el("circle", {cx: X(r.cons), cy: y, r: 5, fill: css("--c0"), stroke: css("--panel"), "stroke-width": 2}, s);
+    hover(el("rect", {x: 0, y: y - rh / 2, width: W, height: rh, fill: "transparent"}, s), `<b>${r.name}</b><br>Consistent-label records: ${f1(r.cons)}% (${f1(r.cons_lo)}–${f1(r.cons_hi)})<br>Conflicting-label records: ${f1(r.conf)}% (${f1(r.conf_lo)}–${f1(r.conf_hi)})<br>${Math.round(r.share)}% of this model's errors fall on conflicting records`);
+  });
+}
+function drawAll(){ drawAudit(); drawModels(); drawHeat(); drawConflict(); }
+drawAll();
+let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawAll, 120); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+addEventListener("scroll", hideTip, {passive: true});
+})();
+</script>
+</body>
+</html>

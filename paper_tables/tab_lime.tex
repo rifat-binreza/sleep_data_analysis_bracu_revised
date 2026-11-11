@@ -1,0 +1,14 @@
+\begin{tabular}{@{}llllcccl@{}}
+\toprule
+Model & Person ID & Reference & Predicted & $P$(Ins./None/Apnea) & LIME $R^2$ & Rank $\rho$ & Top-3 local features\\
+\midrule
+Stacking & 244 & Insomnia & Insomnia & 0.90/0.08/0.02 & 0.77 & 0.98 & Sleep Duration, Age, Diastolic BP\\
+Soft voting & 244 & Insomnia & Insomnia & 0.97/0.03/0.00 & 0.51 & 0.82 & Systolic BP, Physical Activity Level, Sleep Duration\\\midrule
+Stacking & 84 & None & None & 0.32/0.38/0.30 & 0.79 & 0.98 & Diastolic BP, Heart Rate, Age\\
+Soft voting & 84 & None & None & 0.07/0.84/0.08 & 0.64 & 0.84 & Systolic BP, Diastolic BP, BMI Category Normal\\\midrule
+Stacking & 291 & Sleep Apnea & Sleep Apnea & 0.06/0.05/0.89 & 0.76 & 0.97 & Heart Rate, Sleep Duration, Diastolic BP\\
+Soft voting & 291 & Sleep Apnea & Sleep Apnea & 0.02/0.08/0.91 & 0.60 & 0.85 & Systolic BP, Age, Diastolic BP\\\midrule
+Stacking & 19 & Insomnia & Sleep Apnea & 0.08/0.25/0.67 & 0.76 & 0.97 & Heart Rate, Sleep Duration, Diastolic BP\\
+Soft voting & 19 & Insomnia & Sleep Apnea & 0.28/0.05/0.67 & 0.60 & 0.81 & Systolic BP, Age, Diastolic BP\\
+\bottomrule
+\end{tabular}

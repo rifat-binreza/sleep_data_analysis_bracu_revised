@@ -1,0 +1,12 @@
+% written by code/integrate_tabpfn.py from the Kaggle TabPFN run - do not edit by hand
+\renewcommand{\NBase}{thirteen}
+\newcommand{\AccTabG}{89.7}\newcommand{\CIloTabG}{86.3}\newcommand{\CIhiTabG}{92.7}
+\newcommand{\AccTabD}{73.7}\newcommand{\CIloTabD}{67.3}\newcommand{\CIhiTabD}{80.3}
+\newcommand{\DiffTabG}{-0.1}\newcommand{\DiffLoTabG}{-1.5}\newcommand{\DiffHiTabG}{+1.1}
+\newcommand{\DiffTabD}{-0.6}\newcommand{\DiffLoTabD}{-3.6}\newcommand{\DiffHiTabD}{+2.4}
+\renewcommand{\TabPFNMethods}{The pretrained tabular foundation model TabPFN \cite{hollmann2025} (version~2 weights, package version 9.2.0) was evaluated on the same folds with its default settings and no tuning; categorical predictors were integer-coded on each training partition and numerical predictors were passed unscaled, as the model performs its own preprocessing.}
+\renewcommand{\TabPFNResults}{TabPFN reached \AccTabG\% (95\% CI \CIloTabG--\CIhiTabG) under grouped cross-validation and \AccTabD\% (\CIloTabD--\CIhiTabD) on the unique rows; the stack differed from it by $\DiffTabG$~pp (95\% CI $\DiffLoTabG$ to $\DiffHiTabG$) and $\DiffTabD$~pp ($\DiffLoTabD$ to $\DiffHiTabD$), respectively (Tables~\ref{tab:cvmain} and~\ref{tab:cvpaired}).}
+\renewcommand{\TabPFNLimitation}{}
+\renewcommand{\TabPFNRowMain}{TabPFN (v2) & 89.7 [86.3, 92.7] & 0.86 & 0.93 & 0.172 & 0.379 & 0.033\\}
+\renewcommand{\TabPFNRowPairedG}{TabPFN (v2) & -0.1 [-1.5, +1.1] & 16/19/15 & 0.89 & 0/10 & 0.98\\}
+\renewcommand{\TabPFNRowPairedD}{TabPFN (v2) & -0.6 [-3.6, +2.4] & 19/13/18 & 0.62 & 2/10 & 0.96\\}
