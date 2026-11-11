@@ -10,5 +10,5 @@ python3 ablation_stack.py 0 10; python3 seed_sweep.py; python3 ale_corr.py; pyth
 python3 run_extra.py grouped 10; python3 run_extra.py dedup 10      # FT-Transformer rows (needs torch)
 python3 stats_calib.py; python3 build_tables.py; python3 make_figures.py
 python3 perclass_diffs.py; python3 conflict_errors.py                                          # error analysis by label consistency (Section "Where the errors fall")
-python3 ../figure_scripts/fig_overview.py; python3 ../figure_scripts/figs_results.py   # Fig. 1 and the result figures -> ../../figs
+python3 ../figure_scripts/fig_overview.py; python3 ../figure_scripts/figs_results.py; python3 ../figure_scripts/fig_lime_local.py   # Fig. 1 and the result figures -> ../../figs
 # TabPFN: run tabpfn/tabpfn_kaggle.py on Kaggle, copy its three output files into results/, then: python3 integrate_tabpfn.py

@@ -80,7 +80,7 @@ pip install -r requirements.txt
 cd reproducibility_package
 python code/build_tables.py
 python code/perclass_diffs.py && python code/conflict_errors.py
-python figure_scripts/fig_overview.py && python figure_scripts/figs_results.py
+python figure_scripts/fig_overview.py && python figure_scripts/figs_results.py && python figure_scripts/fig_lime_local.py
 
 # or rerun the whole pipeline from the raw file (about an hour on two cores)
 sh run_all.sh

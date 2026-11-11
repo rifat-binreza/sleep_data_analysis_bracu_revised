@@ -5,14 +5,14 @@
 It computes the same quantities, in the same way, as stats_calib.py does for every other model (cluster-bootstrap
 interval, macro-F1, AUC, Brier, log-loss, ECE, paired comparison with the stack), then writes
   results/tabpfn_summary.csv, results/tabpfn_paired.csv
-  ../paper_tables/tabpfn_numbers.tex      table rows and sentences used by the manuscript
+  ../tabpfn_numbers.tex      table rows and sentences picked up automatically by Final_elsevier_revised.tex
 and redraws the figures that list all models.  Needs data/sleep.csv (see data/README.txt).
 """
 import os, sys, json, subprocess, numpy as np, pandas as pd
 from math import comb
 from scipy import stats
 from sklearn.metrics import f1_score, log_loss, roc_auc_score, balanced_accuracy_score
-HERE = os.path.dirname(os.path.abspath(__file__)); R = os.path.join(HERE, "..", "results", ""); ROOT = os.path.join(HERE, "..", "..", "paper_tables", "")
+HERE = os.path.dirname(os.path.abspath(__file__)); R = os.path.join(HERE, "..", "results", ""); ROOT = os.path.join(HERE, "..", "..", "")
 CSV = os.environ.get("SLEEP_CSV", os.path.join(HERE, "..", "data", "sleep.csv"))
 MODEL = os.environ.get("INTEGRATE_MODEL", "TabPFN"); SRC = os.environ.get("INTEGRATE_SRC", "tabpfn_oof_{}.csv")   # overridable only to validate this script on a released model
 FEATS = ["Gender", "Age", "Occupation", "Sleep Duration", "Quality of Sleep", "Physical Activity Level", "Stress Level", "BMI Category", "Heart Rate", "Daily Steps", "Systolic_BP", "Diastolic_BP"]
@@ -84,7 +84,7 @@ tex = f"""% written by code/integrate_tabpfn.py from the Kaggle TabPFN run - do 
 \\newcommand{{\\DiffTabG}}{{{sg(PG.mean_acc_diff_pp)}}}\\newcommand{{\\DiffLoTabG}}{{{sg(PG.boot_lo_pp)}}}\\newcommand{{\\DiffHiTabG}}{{{sg(PG.boot_hi_pp)}}}
 \\newcommand{{\\DiffTabD}}{{{sg(PD.mean_acc_diff_pp)}}}\\newcommand{{\\DiffLoTabD}}{{{sg(PD.boot_lo_pp)}}}\\newcommand{{\\DiffHiTabD}}{{{sg(PD.boot_hi_pp)}}}
 \\renewcommand{{\\TabPFNMethods}}{{The pretrained tabular foundation model TabPFN \\cite{{hollmann2025}} (version~2 weights{', package version ' + ver if ver else ''}) was evaluated on the same folds with its default settings and no tuning; categorical predictors were integer-coded on each training partition and numerical predictors were passed unscaled, as the model performs its own preprocessing.}}
-\\renewcommand{{\\TabPFNResults}}{{TabPFN reached \\AccTabG\\% (95\\% CI \\CIloTabG--\\CIhiTabG) under grouped cross-validation and \\AccTabD\\% (\\CIloTabD--\\CIhiTabD) on the unique rows; the stack differed from it by $\\DiffTabG$~pp (95\\% CI $\\DiffLoTabG$ to $\\DiffHiTabG$) and $\\DiffTabD$~pp ($\\DiffLoTabD$ to $\\DiffHiTabD$), respectively (Tables~\\ref{{tab:cvmain}} and~\\ref{{tab:cvpaired}}).}}
+\\renewcommand{{\\TabPFNResults}}{{TabPFN reached \\AccTabG\\% (95\\% CI \\CIloTabG--\\CIhiTabG) under grouped cross-validation and \\AccTabD\\% (\\CIloTabD--\\CIhiTabD) on the unique rows; the stack differed from it by $\\DiffTabG$~pp (95\\% CI $\\DiffLoTabG$ to $\\DiffHiTabG$) and $\\DiffTabD$~pp ($\\DiffLoTabD$ to $\\DiffHiTabD$), respectively (Table~\\ref{{tab:cvmain}}; the paired analysis is in Section~\\ref{{sec:paired}}).}}
 \\renewcommand{{\\TabPFNLimitation}}{{}}
 \\renewcommand{{\\TabPFNRowMain}}{{TabPFN (v2) & {pc(G.acc)} [{pc(G.acc_bs_lo)}, {pc(G.acc_bs_hi)}] & {f2(G.macro_f1)} & {f2(G.auc)} & {f3(G.brier)} & {f3(G.logloss)} & {f3(G.ece5)}\\\\}}
 \\renewcommand{{\\TabPFNRowPairedG}}{{{prow(PG)}}}
@@ -94,4 +94,4 @@ open(ROOT + "tabpfn_numbers.tex", "w").write(tex); print(tex)
 env = dict(os.environ, SLEEP_CSV=CSV)
 for cmd in (["code/perclass_diffs.py"], ["code/conflict_errors.py"], ["figure_scripts/fig_overview.py"], ["figure_scripts/figs_results.py"]):
     subprocess.check_call([sys.executable, os.path.join(HERE, "..", *cmd[0].split("/"))], env=env, stdout=subprocess.DEVNULL)
-print("Tables and figures updated.")
+print("Figures redrawn. Recompile Final_elsevier_revised.tex and Response_to_Reviewers.tex.")
